@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -36,13 +37,32 @@ public class Order {
         }
     }
 
-    public void process_order(){
-        int total = 0;
-
-        for (int i = 0; i < order.size(); i++) {
-            Product product = order.keys().;
+    public double process_order(){
+        double total = 0.0;
+        Enumeration<Product> products = order.keys();
+        Product currentProduct;
+        Discount currentDiscount;
+        while (products.hasMoreElements()){
+            currentProduct = products.nextElement();
+            currentDiscount = null;
+            int quantity = order.get(currentProduct);
+            for (Discount discount: inventory.discounts) {
+                if(discount.getProduct().identifier==currentProduct.identifier){
+                    currentDiscount=discount;
+                }
+            }
+            if(currentDiscount==null){
+                total += quantity * currentProduct.preco_p_un;
+            }
+            else if(currentDiscount.isDiscount_type()==true){
+                int promo = quantity/4;
+                total += (quantity-promo) * currentProduct.preco_p_un;
+            }
+            else if(currentDiscount.isDiscount_type()==false){
+                total += (1-(quantity-1)*0.05)* quantity*currentProduct.preco_p_un;
+            }
         }
-
+        return total;
     }
 
     public Hashtable<Product, Integer> getOrder() {
