@@ -7,9 +7,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Order {
     Hashtable<Product, Integer> order = new Hashtable<Product, Integer>();
     Inventory inventory;
+    Cliente cliente;
 
-    public Order(Inventory inventory) {
+    public Order(Inventory inventory, Cliente cliente) {
         this.inventory = inventory;
+        this.cliente = cliente;
     }
 
     public void addProduct(int indentifier, int quantity) {
@@ -60,6 +62,12 @@ public class Order {
             }
             else if(currentDiscount.isDiscount_type()==false){
                 total += (1-(quantity-1)*0.05)* quantity*currentProduct.preco_p_un;
+            }
+            if(currentProduct.is_mobilia()){
+                Furniture furniture = (Furniture)currentProduct;
+                if(furniture.peso>15){
+                    total += 10*quantity;
+                }
             }
         }
         return total;

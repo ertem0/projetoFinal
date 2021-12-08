@@ -11,6 +11,16 @@ public class Furniture extends Product {
         this.stock = stock;
         this.peso = peso;
     }
+
+    public double getpeso() {
+        return this.peso;
+    }
+
+    @Override
+    public boolean is_mobilia() {
+        // TODO Auto-generated method stub
+        return true;
+    }
 }
 
 class Dimensao {

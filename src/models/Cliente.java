@@ -6,8 +6,9 @@ public class Cliente {
     String email;
     int telefone;
     Data dataNascimento;
+    boolean frequente;
 
-    Cliente(String nome, String morada, String email, int telefone, Data dataNascimento) {
+    public Cliente(String nome, String morada, String email, int telefone, Data dataNascimento) {
         this.nome = nome;
         this.morada = morada;
         this.email = email;
