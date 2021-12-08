@@ -8,7 +8,7 @@ public class list_clients {
     private ArrayList <Cliente> clientes = new ArrayList<>();
 
 
-    public  void read_text(){
+    public void read_text(){
         File f = new File("src/models/files/clients.txt");
 
         if (f.exists() && f.isFile()) {
