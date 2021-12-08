@@ -2,11 +2,11 @@ package models;
 
 public class Discount {
     boolean discount_type; // true = pay 3 take 4, false = payless
-    Product product;
+    int identifier;
 
-    public Discount(boolean discount_type, Product product) {
+    public Discount(boolean discount_type, int identifier) {
         this.discount_type = discount_type;
-        this.product = product;
+        this.identifier = identifier;
     }
 
     public boolean isDiscount_type() {
