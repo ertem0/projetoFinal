@@ -12,8 +12,4 @@ public class Discount {
     public boolean isDiscount_type() {
         return discount_type;
     }
-
-    public Product getProduct() {
-        return product;
-    }
 }

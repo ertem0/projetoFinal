@@ -49,7 +49,7 @@ public class Order {
             currentDiscount = null;
             int quantity = order.get(currentProduct);
             for (Discount discount: inventory.discounts) {
-                if(discount.getProduct().identifier==currentProduct.identifier){
+                if(discount.identifier==currentProduct.identifier){
                     currentDiscount=discount;
                 }
             }

@@ -7,13 +7,13 @@ public class App {
 
         inventory.addProduct(new Food("Carne", 111, 2.5, 10, 1050, 22));
         inventory.addProduct(new Cleaning("clorix", 222, 6.7, 5, 6));
-        inventory.addProduct(new Furniture("mesa", 333, 10, 5, 20, 0));
+        inventory.addProduct(new Furniture("mesa", 333, 10, 5, 20, 2,4,5));
         inventory.getProducts();
         //inventory.addDiscount(new Discount(true, inventory.getProductfromId(222)));
 
         list_clients list = new list_clients();
 
-        list.read_text();
+        list.read_products();
 
         order.addProduct(222, 2);
         order.addProduct(111, 2);

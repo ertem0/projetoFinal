@@ -1,5 +1,5 @@
-Skip;12365;5,4;200;6
+Skip;12365;5.4;200;6
 !
-Bananas da Dolores;12345;1,4;900;350;5
+Bananas da Dolores;12345;1.4;900;350;5
 !
-Dildo cor-de-rosa;54321;50;60
+Dildo cor-de-rosa;54321;50;60;2;3;4;3

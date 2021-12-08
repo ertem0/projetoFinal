@@ -82,7 +82,7 @@ list_clients {
 
                 for(String l : lines_furniture){
                     String [] lfur = l.split(";");
-                    produtos.add(new Furniture(lfur[0],Integer.parseInt(lfur[1]), Double.parseDouble(lfur[2]), Integer.parseInt(lfur[3]), Integer.parseInt(lfur[4])));
+                    produtos.add(new Furniture(lfur[0],Integer.parseInt(lfur[1]), Double.parseDouble(lfur[2]), Integer.parseInt(lfur[3]), Integer.parseInt(lfur[4]), Integer.parseInt(lfur[5]), Integer.parseInt(lfur[6]), Integer.parseInt(lfur[7])));
                 }
 
                 writethisClass("products.obj", produtos);
@@ -130,7 +130,7 @@ list_clients {
 
 
     public void writethisClass(String file_name, ArrayList objeto){
-        File f = new File("src/models/files/%s", file_name);
+        File f = new File("src/models/files/" + file_name);
 
         try {
             FileOutputStream fos = new FileOutputStream(f);

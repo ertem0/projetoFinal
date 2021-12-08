@@ -22,13 +22,13 @@ public class Inventory {
         if (discount == null) {
             return;
         }
-        removeDiscountfromProduct(discount.product);
+        removeDiscountfromProduct(getProductfromId(discount.identifier));
         discounts.add(discount);
     }
 
     public void removeDiscountfromProduct(Product product){
         for (Discount disc: discounts) {
-            if (product == disc.product){
+            if (product == getProductfromId(disc.identifier)){
                 discounts.remove(disc);
             }
         }
