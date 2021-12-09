@@ -3,10 +3,10 @@ package models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Products implements Serializable {
+public class ProductsList implements Serializable {
     private ArrayList<Product> products;
 
-    public Products() {
+    public ProductsList() {
         this.products = new ArrayList<Product>();
     }
 

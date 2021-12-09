@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 import models.*;
 //nota para mim passar tudo pelo inv.add em vez de dar set (nao apagar rosendo)(ok, eu nao apago)
-
 /**
  * A classe app é o main
  *
@@ -20,7 +19,7 @@ public class App {
      */
     public static void main(String[] args) throws Exception {
 
-        file_manager list = new file_manager();
+        FileManager list = new FileManager();
 
         if(!(new File("src/models/files/clients.obj")).exists()){
             list.read_clients();
@@ -34,11 +33,11 @@ public class App {
         
         
         Clientes clientes = list.load_clientes();
-        Products products = list.load_products();
+        ProductsList productsList = list.load_products();
         Discounts discounts = list.load_discounts();
 
         Inventory inventory = new Inventory();
-        inventory.setProducts(products.getproducts());
+        inventory.setProducts(productsList.getproducts());
         inventory.setDiscounts(discounts.getdiscounts());
         
         Scanner sc= new Scanner(System.in);

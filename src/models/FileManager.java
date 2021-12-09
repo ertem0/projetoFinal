@@ -1,11 +1,10 @@
 package models;
 import java.io.*;
-import java.util.ArrayList;
 
 
-public class file_manager {
+public class FileManager {
     private Clientes clientes = new Clientes();
-    private Products produtos = new Products();
+    private ProductsList produtos = new ProductsList();
     private Discounts descontos = new Discounts();
 
     
@@ -190,15 +189,15 @@ public class file_manager {
         }
         return clientes;
     }
-    public Products load_products(){
+    public ProductsList load_products(){
         File f = new File("src/models/files/products.obj");
-        Products products = new Products();
+        ProductsList productsList = new ProductsList();
 
         try {
             FileInputStream fis = new FileInputStream(f);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
-            products = (Products)ois.readObject();
+            productsList = (ProductsList)ois.readObject();
 
             ois.close();
         } catch (FileNotFoundException ex) {
@@ -209,7 +208,7 @@ public class file_manager {
         } catch (ClassNotFoundException ex) {
             System.out.println("Erro a converter objeto.");
         }
-        return products;
+        return productsList;
     }
     public Discounts load_discounts(){
         File f = new File("src/models/files/discounts.obj");

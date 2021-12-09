@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import javax.swing.SortingFocusTraversalPolicy;
-
 public class Order implements Serializable{
     Hashtable<Product, Integer> order = new Hashtable<Product, Integer>();
     Inventory inventory;
