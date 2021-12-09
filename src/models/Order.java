@@ -1,14 +1,16 @@
 package models;
 
+import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 import javax.swing.SortingFocusTraversalPolicy;
 
-public class Order {
+public class Order implements Serializable{
     Hashtable<Product, Integer> order = new Hashtable<Product, Integer>();
     Inventory inventory;
     Cliente cliente;
+    double total;
 
     public Order(Inventory inventory, Cliente cliente) {
         this.inventory = inventory;
@@ -46,7 +48,7 @@ public class Order {
     }
 
     public double process_order(){
-        double total = 0.0;
+        double totalp = 0.0;
         Enumeration<Product> products = order.keys();
         Product currentProduct;
         Discount currentDiscount;
@@ -60,30 +62,33 @@ public class Order {
                 }
             }
             if(currentDiscount==null){
-                total += quantity * currentProduct.preco_p_un;
+                totalp += quantity * currentProduct.preco_p_un;
             }
             else if(currentDiscount.isDiscount_type()==true){
                 int promo = quantity/4;
-                total += (quantity-promo) * currentProduct.preco_p_un;
+                totalp += (quantity-promo) * currentProduct.preco_p_un;
             }
             else if(currentDiscount.isDiscount_type()==false){
-                total += (1-(quantity-1)*0.05)* quantity*currentProduct.preco_p_un;
+                totalp += (1-(quantity-1)*0.05)* quantity*currentProduct.preco_p_un;
             }
             if(currentProduct.is_mobilia()){
                 Furniture furniture = (Furniture)currentProduct;
                 if(furniture.peso>15){
-                    total += 10*quantity;
+                    totalp += 10*quantity;
                 }
             }
             currentProduct.setStock(currentProduct.getStock()-quantity);
         }
-        if(cliente.frequente && (total<40)){
-            System.out.println("Cliente frequente sem desconto");
-            total+=15;
+        if(cliente.frequente && (totalp<40)){
+            totalp+=15;
         } else if(!cliente.frequente){
-            System.out.println("Cliente nao frequente");
-            total+=20;
+            totalp+=20;
         }
+        this.total = totalp;
+        return totalp;
+    }
+
+    public double getTotal() {
         return total;
     }
 
@@ -94,6 +99,7 @@ public class Order {
             currentProduct = products.nextElement();
             System.out.println(currentProduct.getNome() + " (id:"+currentProduct.identifier+"): Quantidade " + order.get(currentProduct));
         }
+        System.out.println("Total Previsto: " + process_order() + "$");
     }
 
     public Hashtable<Product, Integer> getOrder() {

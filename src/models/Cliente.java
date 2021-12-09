@@ -1,6 +1,8 @@
 package models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Cliente implements Serializable {
     String nome;
@@ -9,6 +11,7 @@ public class Cliente implements Serializable {
     int telefone;
     Data dataNascimento;
     boolean frequente;
+    ArrayList<Order> orders=new ArrayList<>();
 
     public Cliente(String nome, String morada, String email, int telefone, Data dataNascimento, boolean frequente) {
         this.nome = nome;
@@ -24,6 +27,14 @@ public class Cliente implements Serializable {
         return nome;
     }
 
+    public void addOrder(Order order){
+        orders.add(order);
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
@@ -33,6 +44,6 @@ public class Cliente implements Serializable {
                 ", telefone=" + telefone +
                 ", dataNascimento=" + dataNascimento +
                 ", frequente=" + frequente +
-                '}';
+                ", orders= "+ orders+'}';
     }
 }

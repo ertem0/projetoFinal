@@ -61,7 +61,7 @@ public class list_clients {
                 System.out.println("Erro a abrir ficheiro de texto.");
 
             } catch (IOException ex) {
-                System.out.println("Erro a ler ficheiro de texto.");
+                System.out.println("Erro a ler ficheiro de texto." + "Clientes");
             }
         } else {
             System.out.println("Ficheiro não existe.");
@@ -109,8 +109,6 @@ public class list_clients {
                     }
                     produtos.addProduct(new Furniture(lfur[0],Integer.parseInt(lfur[1]), Double.parseDouble(lfur[2]), Integer.parseInt(lfur[3]), Integer.parseInt(lfur[4]), Integer.parseInt(lfur[5]), Integer.parseInt(lfur[6]), Integer.parseInt(lfur[7])));
                 }
-
-                System.out.println(produtos);
                 writethisClass("products.obj", produtos);
                 br.close();
 
@@ -186,7 +184,7 @@ public class list_clients {
             System.out.println(ex);
             System.out.println("Erro a abrir ficheiro.");
         } catch (IOException ex) {
-            System.out.println("Erro a ler ficheiro.");
+            System.out.println("Erro a ler ficheiro. Clientes");
         } catch (ClassNotFoundException ex) {
             System.out.println("Erro a converter objeto.");
         }
@@ -207,7 +205,7 @@ public class list_clients {
             System.out.println(ex);
             System.out.println("Erro a abrir ficheiro.");
         } catch (IOException ex) {
-            System.out.println("Erro a ler ficheiro.");
+            System.out.println("Erro a ler ficheiro. products");
         } catch (ClassNotFoundException ex) {
             System.out.println("Erro a converter objeto.");
         }
@@ -228,7 +226,7 @@ public class list_clients {
             System.out.println(ex);
             System.out.println("Erro a abrir ficheiro.");
         } catch (IOException ex) {
-            System.out.println("Erro a ler ficheiro.");
+            System.out.println("Erro a ler ficheiro. discounts");
         } catch (ClassNotFoundException ex) {
             System.out.println("Erro a converter objeto.");
         }

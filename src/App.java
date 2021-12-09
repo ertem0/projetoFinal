@@ -1,3 +1,5 @@
+import java.io.File;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 import models.*;
@@ -21,9 +23,17 @@ public class App {
      */
     public static void main(String[] args) throws Exception {
         list_clients list = new list_clients();
-        list.read_clients();
-        list.read_discounts();
-        list.read_products();
+        if(!(new File("src/models/files/clients.obj")).exists()){
+            list.read_clients();
+        }
+        if(!(new File("src/models/files/discounts.obj")).exists()){
+            list.read_discounts();
+        }
+        if(!(new File("src/models/files/products.obj")).exists()){
+            list.read_products();
+        }
+        
+        
         Clientes clientes = list.load_clientes();
         Products products = list.load_products();
         Discounts discounts = list.load_discounts();
@@ -31,9 +41,6 @@ public class App {
         Inventory inventory = new Inventory();
         inventory.setProducts(products.getproducts());
         inventory.setDiscounts(discounts.getdiscounts());
-
-        System.out.println(inventory.getProducts());
-        System.out.println(clientes.getClientes());
         
         Scanner sc= new Scanner(System.in);
         Cliente cliente= clientes.login();
@@ -42,7 +49,7 @@ public class App {
         boolean stop =false;
 
         while(!stop){
-            System.out.println("Options:\n1 - Listar produtos\n2 - Adicionar produto\n3 - Listar descontos\n4 - Listar carrinho de compras\n5 - Finalizar compra\n6 - Logout\n7 - Sair\n");
+            System.out.println("Options:\n1 - Listar produtos\n2 - Adicionar produto\n3 - Listar descontos\n4 - Listar carrinho de compras\n5 - Finalizar compra\n6 - Historico de compras\n7 - Logout\n8 - Sair\n");
             System.out.print("Option: ");
             int opcao= sc.nextInt();
             System.out.println();
@@ -82,16 +89,30 @@ public class App {
                 case 5:
                     System.out.println("[PAGAMENTO]\n");
                     System.out.println("Valor total: " + order.process_order()+ "$");
+                    cliente.addOrder(order);
+                    list. writethisClass("clients.obj", clientes);
                     order = new Order(inventory, cliente);
                     break;
                 case 6:
+                    System.out.println("[HISTORICO]\n");
+                    for (Order ord : cliente.getOrders()) {
+                        System.out.println("\n[ORDEM]\n");
+                        for (Product product : ord.getOrder().keySet()) {
+                            System.out.println(product.getNome() + " - " + ord.getOrder().get(product) + " unidades");
+                        }
+                        System.out.println("Total: " + ord.getTotal() + "$");
+                        System.out.println("\n");
+                    }
+                    break;
+                case 7:
                     System.out.println("\n[LOGOUT]\n");
                     cliente = clientes.login();
                     order = new Order(inventory, cliente);
                     break;
-                case 7:
+                case 8:
                     System.out.println("Turning off...");
                     stop = true;
+                    System.out.println(clientes.getClientes());
             }
             System.out.println("\n");
         }
