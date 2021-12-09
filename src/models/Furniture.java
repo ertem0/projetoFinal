@@ -2,10 +2,25 @@ package models;
 
 import java.io.Serializable;
 
+/**
+ * Subclasse de {@link Product}, especificada para mobília, adiconado os objetos peso e dimensao
+ *
+ */
 public class Furniture extends Product {
     int peso;
     Dimensao dimensao;
 
+    /**
+     * Construtor da subclasse {@link Furniture}.
+     * @param nome Nome do artigo
+     * @param indentifier Indentificador do artigo
+     * @param price Preço
+     * @param stock Stock disponível
+     * @param peso Peso
+     * @param altura Altura
+     * @param latgura Largura
+     * @param profundidade Profundidade
+     */
     public Furniture(String nome, int indentifier, double price, int stock, int peso, int altura, int latgura, int profundidade) {
         this.nome = nome;
         this.identifier = indentifier;

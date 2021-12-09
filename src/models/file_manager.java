@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class list_clients {
+public class file_manager {
     private Clientes clientes = new Clientes();
     private Products produtos = new Products();
     private Discounts descontos = new Discounts();
