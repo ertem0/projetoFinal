@@ -86,7 +86,18 @@ public class Order implements Serializable{
                 totalp += (quantity-promo) * currentProduct.preco_p_un;
             }
             else if(currentDiscount.isDiscount_type()==false){
-                totalp += (1-(quantity-1)*0.05)* quantity*currentProduct.preco_p_un;
+                boolean overflow = false;
+                for (int i = 0; i < quantity; i++) {
+                    if(i>=10){
+                        overflow = true;
+                        break;
+                    }
+                    totalp += (1-(i*0.05))*currentProduct.preco_p_un;
+                }
+                if(overflow){
+                    totalp += 0.5 * (quantity-10) * currentProduct.preco_p_un;
+                }
+
             }
             if(currentProduct.is_mobilia()){
                 Furniture furniture = (Furniture)currentProduct;

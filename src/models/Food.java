@@ -1,7 +1,7 @@
 package models;
 
 /**
- * Subclasse de {@link Product}, especificada para produtos alimentares com as variáveis calorias e gordura
+ * Subclasse de {@link Product}, especificada para produtos alimentares com as variaveis calorias e gordura
  */
 public class Food extends Product {
     private int calories; //por 100g
@@ -26,7 +26,7 @@ public class Food extends Product {
     }
 
     /**
-     * Método para a impressão das informações dos alimentos
+     * Metodo para a impressao das informacoes dos alimentos
      * @return String
      */
     @Override

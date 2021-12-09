@@ -1,7 +1,7 @@
 package models;
 
 /**
- * Subclasse de {@link Product}, especificada para produtos de limpeza com a variável toxicidade
+ * Subclasse de {@link Product}, especificada para produtos de limpeza com a variavel toxicidade
  */
 public class Cleaning extends Product {
     int toxicity;
@@ -23,7 +23,7 @@ public class Cleaning extends Product {
     }
 
     /**
-     * Método para a impressão das informações dos produtos
+     * Metodo para a impressao das informacoes dos produtos
      * @return String
      */
     @Override

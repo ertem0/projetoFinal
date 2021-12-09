@@ -3,7 +3,7 @@ package models;
 import java.io.Serializable;
 
 /**
- * Subclasse de {@link Product}, especificada para mobília, adiconado os objetos peso e {@link Dimensao}.
+ * Subclasse de {@link Product}, especificada para mobilia, adiconado os objetos peso e {@link Dimensao}.
  *
  */
 public class Furniture extends Product {
@@ -32,14 +32,14 @@ public class Furniture extends Product {
 
     /**
      *
-     * @return Peso da mobília
+     * @return Peso da mobilia
      */
     public double getpeso() {
         return this.peso;
     }
 
     /**
-     * Override da função {@link Product#is_mobilia()}
+     * Override da funcao {@link Product#is_mobilia()}
      * @return True
      */
     @Override
@@ -49,7 +49,7 @@ public class Furniture extends Product {
     }
 
     /**
-     * Override da função {@link #toString()}
+     * Override da funcao {@link #toString()}
      * @return String estruturada com os dados do objeto
      */
     @Override
@@ -59,7 +59,7 @@ public class Furniture extends Product {
 }
 
 /**
- * Classe que representa uma dimensão de um produto de mobiliario
+ * Classe que representa uma dimensao de um produto de mobiliario
  */
 class Dimensao implements Serializable{
     int altura;

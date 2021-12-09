@@ -3,7 +3,7 @@ package models;
 import java.io.Serializable;
 
 /**
- * Superclasse dos {@link Product}, onde as variáveis base são definidas para utilização nas subclasse {@link Cleaning},
+ * Superclasse dos {@link Product}, onde as variaveis base sao definidas para utilizacao nas subclasse {@link Cleaning},
  * {@link Food} e {@link Furniture}
  *
  */
@@ -46,7 +46,7 @@ public abstract class Product implements Serializable {
     }
 
     /**
-     * Verificar se o produto em questão é mobília
+     * Verificar se o produto em questao é mobilia
      * @return False, exceto na classe Furniture, onde é overridden
      */
     public boolean is_mobilia(){

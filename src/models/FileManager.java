@@ -92,7 +92,7 @@ public class FileManager {
                 String [] lines_cleaning =  file[0].split("\n");
                 String [] lines_food =  file[1].split("\n");
                 String [] lines_furniture =  file[2].split("\n");
-                System.out.println(file[0]);
+
                 for(String l : lines_cleaning){
                     String [] lc = l.split(";");
                     

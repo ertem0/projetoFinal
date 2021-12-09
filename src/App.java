@@ -110,7 +110,6 @@ public class App {
                 case 8:
                     System.out.println("Turning off...");
                     stop = true;
-                    System.out.println(clientes.getClientes());
             }
             System.out.println("\n");
         }
