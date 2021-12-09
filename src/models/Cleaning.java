@@ -11,4 +11,8 @@ public class Cleaning extends Product {
         this.toxicity = toxicity;
     }
     
+    @Override
+    public String toString() {
+        return "Cleaning{" + "nome=" + nome + ", identifier=" + identifier + ", preco_p_un=" + preco_p_un + ", stock=" + stock + ", toxicity=" + toxicity + "}\n";
+    }
 }

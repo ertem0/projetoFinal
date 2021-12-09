@@ -1,5 +1,7 @@
 package models;
 
+import java.io.Serializable;
+
 public class Furniture extends Product {
     int peso;
     Dimensao dimensao;
@@ -22,9 +24,15 @@ public class Furniture extends Product {
         // TODO Auto-generated method stub
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Furniture [peso=" + peso + ", dimensao=" + dimensao + ", nome=" + nome + ", identifier=" + identifier
+                + ", preco_p_un=" + preco_p_un + ", stock=" + stock + "]\n";
+    }
 }
 
-class Dimensao {
+class Dimensao implements Serializable{
     int altura;
     int largura;
     int profundidade;

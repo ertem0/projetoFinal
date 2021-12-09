@@ -6,6 +6,14 @@ public class Inventory {
     ArrayList<Product> products = new ArrayList<Product>();
     ArrayList<Discount> discounts = new ArrayList<Discount>();
 
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+    public void setDiscounts(ArrayList<Discount> discounts) {
+        this.discounts = discounts;
+    }
+
     public void addProduct(Product product) {
         if (product == null) {
             return;

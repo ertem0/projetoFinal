@@ -1,6 +1,8 @@
 package models;
 
-public class Discount {
+import java.io.Serializable;
+
+public class Discount implements Serializable{
     boolean discount_type; // true = pay 3 take 4, false = payless
     int identifier;
 

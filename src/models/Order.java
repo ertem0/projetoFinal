@@ -2,7 +2,6 @@ package models;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Order {
     Hashtable<Product, Integer> order = new Hashtable<Product, Integer>();
@@ -69,6 +68,11 @@ public class Order {
                     total += 10*quantity;
                 }
             }
+        }
+        if(cliente.frequente && (total<40)){
+            total+=15;
+        } else {
+            total+=20;
         }
         return total;
     }

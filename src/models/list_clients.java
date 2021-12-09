@@ -3,18 +3,16 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class
-list_clients {
-
-    private ArrayList <Cliente> clientes = new ArrayList<>();
-    private ArrayList <Product> produtos = new ArrayList<>();
-    private ArrayList <Discount> descontos = new ArrayList<>();
+public class list_clients {
+    private Clientes clientes = new Clientes();
+    private Products produtos = new Products();
+    private Discounts descontos = new Discounts();
 
 
     public  void read_clients(){
         File f = new File("src/models/files/clients.txt");
-
-        if (f.exists() && f.isFile()) {
+        File f2 = new File("src/models/files/clients_frequentes.txt");
+        if (f.exists() && f.isFile() && f2.exists() && f2.isFile()) {
             try {
                 FileReader fr = new FileReader(f);
                 BufferedReader br = new BufferedReader(fr);
@@ -22,21 +20,41 @@ list_clients {
 
                 while ((line = br.readLine()) != null) {
                     String [] str =  line.split(";");
-                    Cliente cliente = new Cliente(str[0], str [1], str[2], Integer.parseInt(str[3]), new Data(Integer.parseInt(str[4]), Integer.parseInt(str[5]), Integer.parseInt(str[5])));
+                    Cliente cliente = new Cliente(str[0], str [1], str[2], Integer.parseInt(str[3]), new Data(Integer.parseInt(str[4]), Integer.parseInt(str[5]), Integer.parseInt(str[5])), false);
 
                     boolean exists = false;
-                    for(Cliente cliente2: clientes){
-                        if (cliente.email.equals(cliente2.email)){
+                    for(Cliente cliente2: clientes.getClientes()){
+                        if (cliente.email == cliente2.email){
                             exists = true;
                         }
-                        if (!exists){
-                            clientes.add(cliente);
-                        }
+                    }
+                    if (!exists){
+                        clientes.addCliente(cliente);
                     }
 
                 }
-                writethisClass("clients.obj", clientes);
+                fr.close();
                 br.close();
+                fr = new FileReader(f2);
+                br = new BufferedReader(fr);
+                while ((line = br.readLine()) != null) {
+                    String [] str =  line.split(";");
+                    Cliente cliente = new Cliente(str[0], str [1], str[2], Integer.parseInt(str[3]), new Data(Integer.parseInt(str[4]), Integer.parseInt(str[5]), Integer.parseInt(str[5])), true);
+
+                    boolean exists = false;
+                    for(Cliente cliente2: clientes.getClientes()){
+                        if (cliente.email == cliente2.email){
+                            exists = true;
+                        }
+                    }
+                    if (!exists){
+                        clientes.addCliente(cliente);
+                    }
+
+                }
+
+                //System.out.println(clientes.getClientes());
+                writethisClass("clients.obj", clientes);
 
 
             } catch (FileNotFoundException ex) {
@@ -61,7 +79,7 @@ list_clients {
                 String text = "";
 
                 while ((line = br.readLine()) != null) {
-                    text += line;
+                    text += line+"\n";
 
                 }
                 String [] file = text.split("!");
@@ -69,22 +87,30 @@ list_clients {
                 String [] lines_cleaning =  file[0].split("\n");
                 String [] lines_food =  file[1].split("\n");
                 String [] lines_furniture =  file[2].split("\n");
-
+                System.out.println(file[0]);
                 for(String l : lines_cleaning){
                     String [] lc = l.split(";");
-                    produtos.add(new Cleaning(lc[0],Integer.parseInt(lc[1]), Double.parseDouble(lc[2]), Integer.parseInt(lc[3]), Integer.parseInt(lc[4])));
+                    
+                    produtos.addProduct(new Cleaning(lc[0],Integer.parseInt(lc[1]), Double.parseDouble(lc[2]), Integer.parseInt(lc[3]), Integer.parseInt(lc[4])));
                 }
 
                 for(String l : lines_food){
                     String [] lf = l.split(";");
-                    produtos.add(new Food((lf[0]),Integer.parseInt(lf[1]), Double.parseDouble(lf[2]), Integer.parseInt(lf[3]), Integer.parseInt(lf[4]), Integer.parseInt(lf[5])));
+                    if(lf.length !=6){
+                        continue;
+                    }
+                    produtos.addProduct(new Food((lf[0]),Integer.parseInt(lf[1]), Double.parseDouble(lf[2]), Integer.parseInt(lf[3]), Integer.parseInt(lf[4]), Integer.parseInt(lf[5])));
                 }
 
                 for(String l : lines_furniture){
                     String [] lfur = l.split(";");
-                    produtos.add(new Furniture(lfur[0],Integer.parseInt(lfur[1]), Double.parseDouble(lfur[2]), Integer.parseInt(lfur[3]), Integer.parseInt(lfur[4]), Integer.parseInt(lfur[5]), Integer.parseInt(lfur[6]), Integer.parseInt(lfur[7])));
+                    if(lfur.length !=8){
+                        continue;
+                    }
+                    produtos.addProduct(new Furniture(lfur[0],Integer.parseInt(lfur[1]), Double.parseDouble(lfur[2]), Integer.parseInt(lfur[3]), Integer.parseInt(lfur[4]), Integer.parseInt(lfur[5]), Integer.parseInt(lfur[6]), Integer.parseInt(lfur[7])));
                 }
 
+                System.out.println(produtos);
                 writethisClass("products.obj", produtos);
                 br.close();
 
@@ -110,7 +136,7 @@ list_clients {
 
                 while ((line = br.readLine()) != null) {
                     String [] str =  line.split(";");
-                    descontos.add(new Discount(Boolean.parseBoolean(str[0]), Integer.parseInt(str [1])));
+                    descontos.addDiscount(new Discount(Boolean.parseBoolean(str[0]), Integer.parseInt(str [1])));
 
                 }
                 writethisClass("discounts.obj", descontos);
@@ -129,7 +155,7 @@ list_clients {
     }
 
 
-    public void writethisClass(String file_name, ArrayList objeto){
+    public void writethisClass(String file_name, Object objeto){
         File f = new File("src/models/files/" + file_name);
 
         try {
@@ -141,8 +167,71 @@ list_clients {
         } catch (FileNotFoundException ex) {
             System.out.println("Erro a criar ficheiro.");
         } catch (IOException ex) {
+            System.out.println(ex);
             System.out.println("Erro a escrever para o ficheiro.");
         }
     }
+    public Clientes load_clientes(){
+        File f = new File("src/models/files/clients.obj");
+        Clientes clientes = new Clientes();
 
+        try {
+            FileInputStream fis = new FileInputStream(f);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            clientes = (Clientes)ois.readObject();
+
+            ois.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+            System.out.println("Erro a abrir ficheiro.");
+        } catch (IOException ex) {
+            System.out.println("Erro a ler ficheiro.");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Erro a converter objeto.");
+        }
+        return clientes;
+    }
+    public Products load_products(){
+        File f = new File("src/models/files/products.obj");
+        Products products = new Products();
+
+        try {
+            FileInputStream fis = new FileInputStream(f);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            products = (Products)ois.readObject();
+
+            ois.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+            System.out.println("Erro a abrir ficheiro.");
+        } catch (IOException ex) {
+            System.out.println("Erro a ler ficheiro.");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Erro a converter objeto.");
+        }
+        return products;
+    }
+    public Discounts load_discounts(){
+        File f = new File("src/models/files/discounts.obj");
+        Discounts discounts = new Discounts();
+
+        try {
+            FileInputStream fis = new FileInputStream(f);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            discounts = (Discounts)ois.readObject();
+
+            ois.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex);
+            System.out.println("Erro a abrir ficheiro.");
+        } catch (IOException ex) {
+            System.out.println("Erro a ler ficheiro.");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Erro a converter objeto.");
+        }
+        return discounts;
+    }
 }

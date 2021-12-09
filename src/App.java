@@ -1,27 +1,58 @@
+import java.util.Scanner;
+
 import models.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Inventory inventory = new Inventory();
-        Order order = new Order(inventory, new Cliente(null, null, null, 0, null));
-
-        inventory.addProduct(new Food("Carne", 111, 2.5, 10, 1050, 22));
-        inventory.addProduct(new Cleaning("clorix", 222, 6.7, 5, 6));
-        inventory.addProduct(new Furniture("mesa", 333, 10, 5, 20, 2,4,5));
-        inventory.getProducts();
-        //inventory.addDiscount(new Discount(true, inventory.getProductfromId(222)));
-
         list_clients list = new list_clients();
-
+        list.read_clients();
+        list.read_discounts();
         list.read_products();
+        Clientes clientes = list.load_clientes();
+        Products products = list.load_products();
+        Discounts discounts = list.load_discounts();
 
-        order.addProduct(222, 2);
-        order.addProduct(111, 2);
-        order.removeProduct(222, 1);
-        order.addProduct(222, 5);
-        order.addProduct(333, 1);
-        System.out.println(order.getOrder());
+        Inventory inventory = new Inventory();
+        inventory.setProducts(products.getproducts());
+        inventory.setDiscounts(discounts.getdiscounts());
+
+        System.out.println(inventory.getProducts());
+        System.out.println(clientes.getClientes());
+        
+        Scanner sc= new Scanner(System.in); 
+
+        System.out.print("[Login]\n\nEmail: ");  
+        String email= sc.nextLine();
+        Cliente cliente = clientes.getByEmail(email);
+        if(cliente == null){
+            System.out.println("\n\n[Login]\n\nEmail não encontrado");
+            return;
+        }
+        Order order = new Order(inventory, cliente);
+        System.out.println("Welcome, " + cliente.getNome() + "\n\n");  
+        
+        System.out.println("Options:\n1 - Listar produtos\n2 - Comprar produto\n3 - Listar descontos\n");  
+        int opcao= sc.nextInt();
+        switch(opcao){
+            case 1:
+                System.out.println(inventory.getProducts());
+                break;
+            case 2:
+                System.out.print("\n[Compra]\n\nID do produto: ");  
+                int id= sc.nextInt();
+                System.out.print("Quantidade: ");  
+                int qtd= sc.nextInt();
+                order.addProduct(id, qtd);
+                System.out.println("\n\n[Compra]\n\nProduto adicionado com sucesso");
+                System.out.println(order.getOrder());
+                break;
+            case 3:
+                System.out.println(inventory.getDiscounts());
+                break;
+        }
+        //System.out.println(order.getOrder());
         //System.out.println(inventory.getDiscounts().get(0).getProduct());
         System.out.println(order.process_order());
+        sc.close();
     }
 }
