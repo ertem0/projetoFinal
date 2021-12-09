@@ -58,22 +58,6 @@ public class Clientes implements Serializable{
         this.clientes.add(cliente);
     }
 
-    public void removeCliente(Cliente cliente){
-        this.clientes.remove(cliente);
-    }
-
-    public void updateCliente(Cliente cliente){
-        this.clientes.set(this.clientes.indexOf(cliente), cliente);
-    }
-
-    public Cliente getCliente(int index){
-        return this.clientes.get(index);
-    }
-
-    public int getSize(){
-        return this.clientes.size();
-    }
-
     /**
      * Acede a lista de clientes
      * @return Dados do cliente
@@ -82,6 +66,10 @@ public class Clientes implements Serializable{
         return clientes;
     }
 
+    /**
+     *
+     * @param clientes Lista dos clientes
+     */
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
     }

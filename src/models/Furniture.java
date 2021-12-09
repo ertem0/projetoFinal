@@ -31,14 +31,6 @@ public class Furniture extends Product {
     }
 
     /**
-     *
-     * @return Peso da mobilia
-     */
-    public double getpeso() {
-        return this.peso;
-    }
-
-    /**
      * Override da funcao {@link Product#is_mobilia()}
      * @return True
      */

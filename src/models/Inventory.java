@@ -24,43 +24,6 @@ public class Inventory implements Serializable {
     public void setDiscounts(ArrayList<Discount> discounts) {
         this.discounts = discounts;
     }
-
-    public void addProduct(Product product) {
-        if (product == null) {
-            return;
-        }
-        for (Product prod : products) {
-            if(product.identifier == prod.identifier) {
-                return;
-            }
-        }
-        products.add(product);
-    }
-
-    public void addDiscount(Discount discount) {
-        if (discount == null) {
-            return;
-        }
-        removeDiscountfromProduct(getProductfromId(discount.identifier));
-        discounts.add(discount);
-    }
-
-    /**
-     * Remove o desconto associado ao produto
-     * @param product Produto
-     */
-    public void removeDiscountfromProduct(Product product){
-        for (Discount disc: discounts) {
-            if (product == getProductfromId(disc.identifier)){
-                discounts.remove(disc);
-            }
-        }
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-    }
-
     /**
      * Metodo que devolve os dados de um produto fornecido o seu identificador
      * @param id Identificador
@@ -74,7 +37,6 @@ public class Inventory implements Serializable {
         }
         return null;
     }
-
     /**
      *
      * @return Lista dos produtos
@@ -82,7 +44,6 @@ public class Inventory implements Serializable {
     public ArrayList<Product> getProducts() {
         return products;
     }
-
     /**
      *
      * @return Lista dos descontos

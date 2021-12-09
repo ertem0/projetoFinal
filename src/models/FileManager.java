@@ -208,7 +208,7 @@ public class FileManager {
     }
     /**
      * Metodo para a leitura do ficheiro .obj com os dados dos produtos
-     * @return Instancia da classe {@link Products}
+     * @return Instancia da classe {@link ProductsList}
      */
     public ProductsList load_products(){
         File f = new File("src/models/files/products.obj");
