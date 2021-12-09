@@ -14,13 +14,13 @@ public class App {
     /**
      * Começa-se por incializar os objetos necessários, fazer a leitura dos ficheiros .txt onde se encontram
      * os dados sobre os clientes, pordutos e descontos, e guardar a informação em ficheiros .obj.
-     * É pedido ao utilizador que faça o login. Caso este escolha fazer logout o loop é reiniciado.
-     * O programa apenas é terminado por ordem do utilizador.
+     * É pedido ao utilizador que faça o login. Caso este escolha fazer logout o loop e reiniciado.
+     * O programa apenas e terminado por ordem do utilizador.
      *
      */
     public static void main(String[] args) throws Exception {
 
-        file_manager list = new file_manager();
+        FileManager list = new FileManager();
 
         if(!(new File("src/models/files/clients.obj")).exists()){
             list.read_clients();

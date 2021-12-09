@@ -2,13 +2,17 @@ package models;
 import java.io.*;
 import java.util.ArrayList;
 
-
-public class file_manager {
+/**
+ * Classe para a leitura e criacao de ficheiros txt e obj, respetivamente
+ */
+public class FileManager {
     private Clientes clientes = new Clientes();
     private Products produtos = new Products();
     private Discounts descontos = new Discounts();
 
-
+    /**
+     * Metodo para ler os ficheiros .txt com os dados dos clientes e criar do ficheiro .obj com recurso a {@link #writethisClass(String, Object)}
+     */
     public  void read_clients(){
         File f = new File("src/models/files/clients.txt");
         File f2 = new File("src/models/files/clients_frequentes.txt");
@@ -67,7 +71,9 @@ public class file_manager {
             System.out.println("Ficheiro não existe.");
         }
     }
-
+    /**
+     * Metodo para ler os ficheiros .txt com os dados dos produtos e criar do ficheiro .obj com recurso a {@link #writethisClass(String, Object)}
+     */
     public  void read_products(){
         File f = new File("src/models/files/products.txt");
 
@@ -123,6 +129,9 @@ public class file_manager {
         }
     }
 
+    /**
+     * Metodo para ler os ficheiros .txt com os dados dos descontos e criar do ficheiro .obj com recurso a {@link #writethisClass(String, Object)}
+     */
     public  void read_discounts(){
         File f = new File("src/models/files/discounts.txt");
 
@@ -152,7 +161,11 @@ public class file_manager {
         }
     }
 
-
+    /**
+     * Metodo para a criacao do ficheiro .obj
+     * @param file_name Nome do ficheiro destino
+     * @param objeto Conteudo a escrever
+     */
     public void writethisClass(String file_name, Object objeto){
         File f = new File("src/models/files/" + file_name);
 
@@ -169,6 +182,10 @@ public class file_manager {
             System.out.println("Erro a escrever para o ficheiro.");
         }
     }
+    /**
+     * Metodo para a leitura do ficheiro .obj com os dados dos clientes
+     * @return Instancia da classe {@link Clientes}
+     */
     public Clientes load_clientes(){
         File f = new File("src/models/files/clients.obj");
         Clientes clientes = new Clientes();
@@ -190,6 +207,10 @@ public class file_manager {
         }
         return clientes;
     }
+    /**
+     * Metodo para a leitura do ficheiro .obj com os dados dos produtos
+     * @return Instancia da classe {@link Products}
+     */
     public Products load_products(){
         File f = new File("src/models/files/products.obj");
         Products products = new Products();
@@ -211,6 +232,10 @@ public class file_manager {
         }
         return products;
     }
+    /**
+     * Metodo para a leitura do ficheiro .obj com os dados dos descontos
+     * @return Instancia da classe {@link Discounts}
+     */
     public Discounts load_discounts(){
         File f = new File("src/models/files/discounts.obj");
         Discounts discounts = new Discounts();
