@@ -1,12 +1,11 @@
 import java.io.File;
-import java.util.Hashtable;
 import java.util.Scanner;
 
 import models.*;
 //nota para mim passar tudo pelo inv.add em vez de dar set (nao apagar rosendo)(ok, eu nao apago)
 
 /**
- * A classe app é onde a o programa vai ser corrido
+ * A classe app é o main
  *
  * @author Francisco Rosendo
  * @author Vasco Gouveia
@@ -18,12 +17,11 @@ public class App {
      * É pedido ao utilizador que faça o login. Caso este escolha fazer logout o loop é reiniciado.
      * O programa apenas é terminado por ordem do utilizador.
      *
-     * @param args ¿...?
-     * @throws Exception ¡Não são utilizadas!
      */
     public static void main(String[] args) throws Exception {
-        
-        list_clients list = new list_clients();
+
+        file_manager list = new file_manager();
+
         if(!(new File("src/models/files/clients.obj")).exists()){
             list.read_clients();
         }
@@ -91,7 +89,7 @@ public class App {
                     System.out.println("[PAGAMENTO]\n");
                     System.out.println("Valor total: " + order.process_order()+ "$");
                     cliente.addOrder(order);
-                    list. writethisClass("clients.obj", clientes);
+                    list.writethisClass("clients.obj", clientes);
                     order = new Order(inventory, cliente);
                     break;
                 case 6:
