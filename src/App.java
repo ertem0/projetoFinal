@@ -1,9 +1,24 @@
 import java.util.Scanner;
 
 import models.*;
-//nota para mim passar tudo pelo inv.add em vez de dar set (nao apagar rosendo)
-public class App {
+//nota para mim passar tudo pelo inv.add em vez de dar set (nao apagar rosendo)(ok, eu nao apago)
 
+/**
+ * A classe app é onde a o programa vai ser corrido
+ *
+ * @author Francisco Rosendo
+ * @author Vasco Gouveia
+ */
+public class App {
+    /**
+     * Começa-se por incializar os objetos necessários, fazer a leitura dos ficheiros .txt onde se encontram
+     * os dados sobre os clientes, pordutos e descontos, e guardar a informação em ficheiros .obj.
+     * É pedido ao utilizador que faça o login. Caso este escolha fazer logout o loop é reiniciado.
+     * O programa apenas é terminado por ordem do utilizador.
+     *
+     * @param args ¿...?
+     * @throws Exception ¡Não são utilizadas!
+     */
     public static void main(String[] args) throws Exception {
         list_clients list = new list_clients();
         list.read_clients();
@@ -25,6 +40,7 @@ public class App {
         
         Order order = new Order(inventory, cliente);
         boolean stop =false;
+
         while(!stop){
             System.out.println("Options:\n1 - Listar produtos\n2 - Adicionar produto\n3 - Listar descontos\n4 - Listar carrinho de compras\n5 - Finalizar compra\n6 - Logout\n7 - Sair\n");
             System.out.print("Option: ");

@@ -1,2 +1,5 @@
-Francisco,Rua,fse@dsa.com,919191,20,11,2002
-Vasco,Sei la,vdew@uyt.pt,82929,25,12,2002
+Francisco;Rua;Francisco@sapo.pt;919191;20;11;2002
+Vasco;Sei la;Vasco@sapo.pt;82929;25;12;2002
+mario;Sei la;mario@gmail.com;912266666;25;12;2002
+Rita;Sei la;Rita@gmail.com;912266666;25;12;2002
+Lourenci;Sei la;Lourenci@gmail.com;912266666;25;12;2002

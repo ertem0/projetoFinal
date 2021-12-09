@@ -5,13 +5,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Clientes implements Serializable{
-    private ArrayList<Cliente> clientes;
-
+    /**
+     * @author Francisco Rosendo
+     * @author Vasco Gouveia
+     */
     public Clientes() {
         this.clientes = new ArrayList<Cliente>();
     }
 
+    private ArrayList<Cliente> clientes;
+    /**
+     * Função para a implementação do Login.
+     * Caso o email não esteja registado, o ciclo é retomado.
+     */
     public Cliente login(){
+
         Scanner sc= new Scanner(System.in);
 
         while(true){
@@ -26,7 +34,11 @@ public class Clientes implements Serializable{
             }
         }
     }
-
+    /**
+     * Método que identifica o cliente através do email fornecido.
+     * @param email Fornecido pelo utilizador no Login.
+     * @return Instância da classe Cliente associada ao email, se existir. Null, se não.
+     */
     public Cliente getByEmail(String email) {
         for (Cliente cliente : clientes) {
             if (cliente.email.equals(email)) {
@@ -36,6 +48,10 @@ public class Clientes implements Serializable{
         return null;
     }
 
+    /**
+     *
+     * @param cliente
+     */
     public void addCliente(Cliente cliente){
         this.clientes.add(cliente);
     }
