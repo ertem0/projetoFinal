@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe para a impementacao de funcionalidades como o login
+ */
 public class Clientes implements Serializable{
     /**
-     * @author Francisco Rosendo
-     * @author Vasco Gouveia
+     * Contrutor da classe {@link Clientes}
      */
     public Clientes() {
         this.clientes = new ArrayList<Cliente>();
@@ -37,7 +39,7 @@ public class Clientes implements Serializable{
     /**
      * Método que identifica o cliente através do email fornecido.
      * @param email Fornecido pelo utilizador no Login.
-     * @return Instância da classe Cliente associada ao email, se existir. Null, se não.
+     * @return Instância da classe {@link Cliente} associada ao email, se existir. Null, se não.
      */
     public Cliente getByEmail(String email) {
         for (Cliente cliente : clientes) {
@@ -49,8 +51,8 @@ public class Clientes implements Serializable{
     }
 
     /**
-     *
-     * @param cliente
+     * Adicona à lista os novos clientes
+     * @param cliente Cliente a ser adiconado
      */
     public void addCliente(Cliente cliente){
         this.clientes.add(cliente);
@@ -72,6 +74,10 @@ public class Clientes implements Serializable{
         return this.clientes.size();
     }
 
+    /**
+     * Acede a lista de clientes
+     * @return Dados do cliente
+     */
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }

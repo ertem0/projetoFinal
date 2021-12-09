@@ -6,8 +6,6 @@ import java.io.Serializable;
  * Superclasse dos {@link Product}, onde as variáveis base são definidas para utilização nas subclasse {@link Cleaning},
  * {@link Food} e {@link Furniture}
  *
- * @author Francisco Rosendo
- * @author Vasco Gouveia
  */
 public abstract class Product implements Serializable {
     String nome;
