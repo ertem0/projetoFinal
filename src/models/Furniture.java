@@ -27,8 +27,7 @@ public class Furniture extends Product {
 
     @Override
     public String toString() {
-        return "Furniture [peso=" + peso + ", dimensao=" + dimensao + ", nome=" + nome + ", identifier=" + identifier
-                + ", preco_p_un=" + preco_p_un + ", stock=" + stock + "]\n";
+        return "["+this.nome + " (id: "+this.identifier+")] preco: " + this.preco_p_un + "$, Peso: " + this.peso + ", Altura:" + this.dimensao.altura + ", Largura: " + this.dimensao.largura + ",  Profundidade: " + this.dimensao.profundidade;
     }
 }
 

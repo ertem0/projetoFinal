@@ -13,6 +13,6 @@ public class Cleaning extends Product {
     
     @Override
     public String toString() {
-        return "Cleaning{" + "nome=" + nome + ", identifier=" + identifier + ", preco_p_un=" + preco_p_un + ", stock=" + stock + ", toxicity=" + toxicity + "}\n";
+        return  "["+this.nome + " (id: "+this.identifier+")] preco: " + this.preco_p_un + "$, Nivel de toxicidade: " + this.toxicity;
     }
 }

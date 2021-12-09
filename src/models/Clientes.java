@@ -2,12 +2,29 @@ package models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Clientes implements Serializable{
     private ArrayList<Cliente> clientes;
 
     public Clientes() {
         this.clientes = new ArrayList<Cliente>();
+    }
+
+    public Cliente login(){
+        Scanner sc= new Scanner(System.in);
+
+        while(true){
+            System.out.print("[Login]\n\nEmail: ");  
+            String email= sc.nextLine();
+            Cliente cliente = getByEmail(email);
+            if(cliente != null){
+                System.out.println("Welcome, " + cliente.getNome() + "\n\n"); 
+                return cliente;
+            } else{
+                System.out.println("\n\n[Login]\n\nEmail não encontrado\n");
+            }
+        }
     }
 
     public Cliente getByEmail(String email) {

@@ -8,8 +8,20 @@ public abstract class Product implements Serializable {
     double preco_p_un;
     int stock;
 
+    public String getNome() {
+        return nome;
+    }
+
     public int getIdentifier() {
         return identifier;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public boolean is_mobilia(){

@@ -11,6 +11,10 @@ public class Discount implements Serializable{
         this.identifier = identifier;
     }
 
+    public int getIdentifier() {
+        return identifier;
+    }
+
     public boolean isDiscount_type() {
         return discount_type;
     }

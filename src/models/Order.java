@@ -3,6 +3,8 @@ package models;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import javax.swing.SortingFocusTraversalPolicy;
+
 public class Order {
     Hashtable<Product, Integer> order = new Hashtable<Product, Integer>();
     Inventory inventory;
@@ -20,6 +22,11 @@ public class Order {
                     order.put(product, order.get(product) + quantity);
                 } else {
                     order.put(product, quantity);
+                }
+                if (order.get(product) <= 0) {
+                    order.remove(product);
+                } else if(order.get(product) > product.getStock()) {
+                    order.put(product, product.getStock());
                 }
             }
         }
@@ -68,13 +75,25 @@ public class Order {
                     total += 10*quantity;
                 }
             }
+            currentProduct.setStock(currentProduct.getStock()-quantity);
         }
         if(cliente.frequente && (total<40)){
+            System.out.println("Cliente frequente sem desconto");
             total+=15;
-        } else {
+        } else if(!cliente.frequente){
+            System.out.println("Cliente nao frequente");
             total+=20;
         }
         return total;
+    }
+
+    public void displayOrder() {
+        Enumeration<Product> products = order.keys();
+        Product currentProduct;
+        while (products.hasMoreElements()) {
+            currentProduct = products.nextElement();
+            System.out.println(currentProduct.getNome() + " (id:"+currentProduct.identifier+"): Quantidade " + order.get(currentProduct));
+        }
     }
 
     public Hashtable<Product, Integer> getOrder() {

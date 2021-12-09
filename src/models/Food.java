@@ -15,6 +15,6 @@ public class Food extends Product {
     
     @Override
     public String toString() {
-        return "Food{" + "nome=" + nome + ", indentifier=" + identifier + ", preco_p_un=" + preco_p_un + ", stock=" + stock + ", calories=" + calories + ", fat=" + fat + "}\n";
+        return  "["+this.nome + " (id: "+this.identifier+")] preco: " + this.preco_p_un + "$, Gordura(%): " + this.fat + ", Calorias: " + this.calories;
     }
 }
