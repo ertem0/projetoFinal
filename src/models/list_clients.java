@@ -8,7 +8,7 @@ public class list_clients {
     private Products produtos = new Products();
     private Discounts descontos = new Discounts();
 
-
+    
     public  void read_clients(){
         File f = new File("src/models/files/clients.txt");
         File f2 = new File("src/models/files/clients_frequentes.txt");

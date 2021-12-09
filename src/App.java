@@ -22,6 +22,7 @@ public class App {
      * @throws Exception ¡Não são utilizadas!
      */
     public static void main(String[] args) throws Exception {
+        
         list_clients list = new list_clients();
         if(!(new File("src/models/files/clients.obj")).exists()){
             list.read_clients();
